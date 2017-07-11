@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--文件管理 -->
+    最大磁道号:
+    <select id="maxTrackNumber">
+        <option>300</option>
+        <option>900</option>
+        <option>2000</option>
+        <option>5000</option>
+        <option>10000</option>
+        <option>25000</option>
+        <option>60000</option>
+        <option>其它</option>
+    </select><br> 起始扫描磁道号：
+    <input type="text" id="beginTrackNumber" placeholder="请输入起始扫描磁道号"><br> 选择磁道数：
+    <select id="randomNumber">
+        <option>3</option>
+        <option>5</option>
+        <option>10</option>
+        <option>14</option>
+        <option>15</option>
+        <option>20</option>
+        <option>其它</option>
+    </select>
+    <button id="inspection">检验</button>
+    <button id="random">随机赋值</button><br>
+    <button id="FCFS">点击执行FCFS算法</button>
+    <button id="SSTF">点击执行SSTF算法</button>
+    <button id="SCAN">点击执行SCAN算法</button>
+    <button id="CSCAN">点击执行CSCAN算法</button>
+    <div id="information"></div>
+    <div id="result">
+    </div>
+</body>
+<script type="text/javascript " src="../../js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript " src="bolckProgram/fileManagement.js "></script>
+
+</html>

@@ -1,0 +1,356 @@
+<html>
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>操作系统</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+</head>
+
+<body>
+    <div class="radmenu"><a href="#" class="show" data-toggle="tooltip" data-placement="right" title="点击显示(隐藏)子菜单" id="start">START</a>
+        <ul>
+            <li>
+                <a href="#" class="" id="process">进程管理</a>
+                <ul>
+                    <li><a href="#" id="addProcess" data-toggle="tooltip" data-placement="top" title="添加进程">addProcess</a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="先来先服务算法" id="processFCFS">FCFS</a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="短作业优先算法" id="processPSA">PSA </a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="高响应比优先算法" id="processHRRN">HRRN</a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="生产者与消费者" id="ProducerAndConsumer">P&C</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" id="store">存储管理</a>
+                <ul>
+                    <li><a href="#" id="storeAdd" data-toggle="tooltip" data-placement="top" title="录入信息">addInformation</a></li>
+                    <li><a href="#" id="storeFCFS" data-toggle="tooltip" data-placement="top" title="先来先服务算法">FCFS</a></li>
+                    <li><a href="#" id="storeLRU" data-toggle="tooltip" data-placement="top" title="最近最少使用算法">LRU</a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="方丈遗少真诗人">小结</a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="楼上说得对">说猿</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" id="equipment">设备管理</a>
+                <ul>
+                    <li><a href="#" id="equipmentAdd" data-toggle="tooltip" data-placement="top" title="noting">这个没用</a></li>
+                    <li><a href="#" id="bankerAlgorithm" data-toggle="tooltip" data-placement="top" title="银行家算法">bankerAlgorithm</a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="伟大的BUG">BUG</a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="方丈遗少真诗人">小结</a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="楼上说得对">说猿</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" id="file">文件管理</a>
+                <ul>
+                    <li><a href="#" id="fileAdd" data-toggle="tooltip" data-placement="top" title="录入信息">addInformation</a></li>
+                    <li><a href="#" id="fileFCFS" data-toggle="tooltip" data-placement="top" title="先来先服务算法">FCFS</a></li>
+                    <li><a href="#" id="fileSCAN" data-toggle="tooltip" data-placement="top" title="扫描算法">SCAN</a></li>
+                    <li><a href="#" id="fileCSCAN" data-toggle="tooltip" data-placement="top" title="循环扫描算法">CSCAN</a></li>
+                    <li><a href="#" id="fileSSTF" data-toggle="tooltip" data-placement="top" title="最短寻路优先算法(最后再执行，若先执行，存数据的数组会发生改变)">SSTF</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" id="study" data-toggle="tooltip" data-placement="top">学海拾遗</a>
+                <ul>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="一些经验之谈">JS对象误区</a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="吹一波">Node输入输出</a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Jq推销">Jquery介绍</a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="坑坑坑">实验情况</a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="the end">小结</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="modal fade bs-example-modal-sm" id="processModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">进程管理：录入进程的详细信息。 <small>_____方丈遗少不是杜三贱</small></h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputName" class="col-sm-3 control-label">进程名:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="processName" placeholder="3~8位数字或字母">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSort" class="col-sm-3 control-label">进程优先级:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="processPriority" placeholder="1-200之间的整数">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">进程需要时间:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="processNeedTime" placeholder="1-250之间的整数">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-8">
+                                <button type="button" class="btn btn-primary btn-block" id="processEntering">录入进程</button>
+                                <button type="button" class="btn btn-danger btn-block" id="processDelete" data-toggle="tooltip" data-placement="top" title="双击按钮删除全部进程">删除全部已录进程</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="processInformation"></div>
+                    <div class="table-responsive">
+                        <table class='table table-striped table-bordered table-hover' id="processResult">
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-group-vertical" data-dismiss="modal">打赏</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="PCModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="PCLabel">生产者与消费者算法模拟<small>_____方丈遗少不是杜三贱</small></h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-8">
+                                <button type="button" class="btn btn-warning btn-block" id="pcReset">清空界面</button>
+                                <button type="button" class="btn btn-primary btn-block" id="pcEnd">终止算法</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="table-responsive">
+                        <table class='table table-striped table-bordered table-hover' id="pcResult"></table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-group-vertical" data-dismiss="modal">打赏</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="storeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="storeLabel">存储管理：录入存储的详细信息。<small>_____方丈遗少不是杜三贱</small></h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputName" class="col-sm-3 control-label">页面尺寸:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="layLength" placeholder="请输入页面尺寸(1024~3072)">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSort" class="col-sm-3 control-label">页表长度:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="layNumber" placeholder="请输入页表长度（2~4）">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputNumber" class="col-sm-3 control-label">访问指令数量：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="visitNumber" placeholder="1-250之间的整数">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-8">
+                                <button type="button" class="btn btn-danger  btn-block" id="reset">重置</button>
+                                <button type="button" class="btn btn-primary btn-block" id="entering">录入</button>
+                            </div>
+                        </div>
+                        <div id="information">
+                        </div>
+                        <div class="table-responsive">
+                            <table class='table table-striped table-bordered table-hover' id="result">
+                            </table>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-group-vertical" data-dismiss="modal">打赏</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="equipmentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="equipmentLabel">设备管理：录入银行家算法的详细信息。<small>_____方丈遗少不是杜三贱</small></h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputName" class="col-sm-5 control-label">请选择需要申请资源的进程：</label>
+                            <div class="col-sm-4">
+                                <select id="processNumber" class="form-control">
+                                     <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputName" class="col-sm-5 control-label">A资源数:</label>
+                            <div class="col-sm-4">
+                                <select id="aNumber" class="form-control">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                    <option>其它</option>
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSort" class="col-sm-5 control-label">B资源数:</label>
+                            <div class="col-sm-4">
+                                <select id="bNumber" class="form-control">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>其它</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-5 control-label">C资源数:</label>
+                            <div class="col-sm-4">
+                                <select id="cNumber" class="form-control">
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>其它</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-8">
+                                <button type="button" class="btn btn-danger btn-block" id="equipmentReset">重置</button>
+                                <button type="button" class="btn btn-primary btn-block" id="equipmentEntering">点击进行安全检验并分配</button>
+                            </div>
+                        </div>
+                        <div id="equipmentInformation"></div>
+                        <!--<div id="equipmentResult"></div>-->
+                        <div class="table-responsive">
+                            <table class='table table-striped table-bordered table-hover ' id="equipmentResult">
+                            </table>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-group-vertical" data-dismiss="modal">打赏</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="fileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="fileLabel">文件管理：录入磁道的详细信息。<small>_____方丈遗少不是杜三贱</small></h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputName" class="col-sm-3 control-label">最大磁道号:</label>
+                            <div class="col-sm-6">
+                                <select id="maxTrackNumber" class="form-control">
+                                        <option>300</option>
+                                        <option>900</option>
+                                        <option>2000</option>
+                                        <option>5000</option>
+                                        <option>10000</option>
+                                        <option>25000</option>
+                                        <option>60000</option>
+                                        <option>其它</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSort" class="col-sm-3 control-label">起始扫描磁道号:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="beginTrackNumber" placeholder="请输入起始扫描磁道号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">选择磁道数:</label>
+                            <div class="col-sm-6">
+                                <select id="randomNumber" class="form-control">
+                                    <option>3</option>
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>14</option>
+                                    <option>15</option>
+                                    <option>20</option>
+                                    <option>其它</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-8">
+                                <button type="button" class="btn btn-danger btn-block" id="fileReset">重置</button>
+                                <button type="button" class="btn btn-primary btn-block" id="inspection">检验</button>
+                                <button type="button" class="btn btn-info btn-block" id="fileRandom" disabled="disabled">随机赋值</button>
+                            </div>
+                        </div>
+                        <div id="fileInformation"></div>
+                        <div class="table-responsive">
+                            <table class='table table-striped table-bordered table-hover ' id="fileResult">
+                            </table>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-group-vertical" data-dismiss="modal">打赏</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>
